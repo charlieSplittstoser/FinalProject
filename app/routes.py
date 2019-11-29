@@ -1,7 +1,7 @@
-from app import app
+from app import app, db
 from flask import render_template
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Course, Enrollment
 from app.forms import LoginForm
 from werkzeug.urls import url_parse
 
@@ -13,15 +13,18 @@ def index():
     admin = User(first_name='bobby', last_name='clasemann', email='bob@example.com', person_key=1)
     admin2 = User(first_name='charlie', last_name='split', email='split@example.com', person_key=1)
     course_one = Course(course_id=4131, title='CSCI4131', credits=3)
-
+    enroll1 = Enrollment(user_id=0, course_id=0)
     print("Hello")
 
     db.session.add(admin)
     db.session.add(admin2)
     db.session.add(course_one)
+    #db.session.add(enroll1)
     db.session.commit()
 
     print(User.query.all())
+    print(Course.query.all())
+    print(Enrollment.query.all())
 
     print("Goodbye")
 
