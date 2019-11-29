@@ -7,19 +7,21 @@ from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/index')
-@login_required
+#@login_required
 def index():
-    #db.create_all()
-   # admin = User(username='admin', email='admin@example.com')
-   # guest = User(username='guest', email='guest@example.com')
+    db.create_all()
+    admin = User(first_name='bobby', last_name='clasemann', email='bob@example.com', person_key=1)
+    admin2 = User(first_name='charlie', last_name='split', email='split@example.com', person_key=1)
+    course_one = Course(course_id=4131, title='CSCI4131', credits=3)
 
     print("Hello")
 
-  #  db.session.add(admin)
-  #  db.session.add(guest)
-  #  db.session.commit()
+    db.session.add(admin)
+    db.session.add(admin2)
+    db.session.add(course_one)
+    db.session.commit()
 
-    #print(User.query.all())
+    print(User.query.all())
 
     print("Goodbye")
 

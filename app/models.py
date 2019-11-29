@@ -20,18 +20,18 @@ class User(UserMixin, db.Model):
   def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-class Course(db.Model, Base):
+class Course(db.Model):
   __tablename__ = 'Course'
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   course_id = db.Column(db.Integer, unique=True, nullable=False)
   title = db.Column(db.String(50), unique=False, nullable=False)
   credits = db.Column(db.Integer, unique=False, nullable=False)
 
-  enroll = relationship(
-    "User",
-    secondary=Table'enrolled', Base.metadata,
-      Column('user_id', Integer, ForeignKey('User.id'), primary_key=True),
-      Column('course_id', Integer, ForeignKey('Course.id'), primary_key=True))
+  #enroll = relationship(
+    #"User",
+    #secondary=Table'enrolled', Base.metadata,
+    #  Column('user_id', Integer, ForeignKey('User.id'), primary_key=True),
+    #  Column('course_id', Integer, ForeignKey('Course.id'), primary_key=True))
 
 @login.user_loader
 def load_user(id):
