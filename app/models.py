@@ -19,6 +19,7 @@ class User(UserMixin, db.Model):
   last_name = db.Column(db.String(80), unique=False, nullable=False)
   email = db.Column(db.String(120), unique=True, nullable=False)
   person_key = db.Column(db.Boolean, unique=False, nullable=False)
+  password_hash = db.Column(db.String(128))
 
   def __repr__(self):
       return '<first_name %r, last_name %r, email %r>' % (self.first_name, self.last_name, self.email)
@@ -26,6 +27,7 @@ class User(UserMixin, db.Model):
 
   def set_password(self, password):
         self.password_hash = generate_password_hash(password)
+
   def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -49,7 +51,7 @@ class Enrollment(db.Model):
   course_id = Column(db.Integer, db.ForeignKey('Course.id'), nullable=False)
   course = db.relationship("Course")
 
-  
+
   def __repr__(self):
     return '<Course %r, User %r>' % (self.course_id, self.user_id)
   #enroll = relationship(
