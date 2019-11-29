@@ -1,11 +1,9 @@
-from app import db
-
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+from app import db, login
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 ### MODELS ###
-class User(db.Model):
+class User(UserMixin, db.Model):
   __tablename__ = 'User'
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   first_name = db.Column(db.String(80), unique=False, nullable=False)
@@ -16,11 +14,11 @@ class User(db.Model):
   def __repr__(self):
       return '<User %r>' % self.username
 
-  #def set_password(self, password):
-      #self.password_hash = generate_password_hash(password)
 
-  #def check_password(self, password):
-      #return check_password_hash(self.password_hash, password)
+  def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+  def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 class Course(db.Model, Base):
   __tablename__ = 'Course'
@@ -35,24 +33,6 @@ class Course(db.Model, Base):
       Column('user_id', Integer, ForeignKey('User.id'), primary_key=True),
       Column('course_id', Integer, ForeignKey('Course.id'), primary_key=True))
 
-
-@app.route('/')
-def index():
-  db.create_all()
-  admin = User(first_name='bobby', last_name='clasemann', email='bob@example.com', person_key=1)
-  admin2 = User(first_name='charlie', last_name='split', email='split@example.com', person_key=1)
-  course_one = Course(course_id=4131, title='CSCI4131', credits=3)
-
-  print("Hello")
-
-  db.session.add(admin)
-  db.session.add(admin2)
-  db.session.add(course_one)
-  db.session.commit()
-
-  print(User.query.all())
-
-  print("Goodbye")
-
-  return render_template("base.html")
-        
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
