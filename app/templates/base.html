@@ -1,9 +1,14 @@
 <html>
-	<head>
-		<title>Word Finder</title>
-		<link rel="stylesheet" href="/static/styles.css">
-		</head>
-	<body>
-		<h1>Test</h1>
-	</body
+    <head>
+      {% if title %}
+      <title>{{ title }} - Microblog</title>
+      {% else %}
+      <title>Welcome to Microblog</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Microblog: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
 </html>
