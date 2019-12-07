@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center><h4 style="margin-top:100px;">You are about to enroll in the following course:</h4></center>
+
+  <div id="enrollBlock">
+    <p>{{ course.course_id }} - {{ course.title }}</p>
+    <span>Instructor: {{ course.instructor }}</span>
+    <span>Credits: {{ course.credits }}</span>
+  </div>
+
+{% endblock %}

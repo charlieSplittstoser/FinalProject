@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center><h1>Course Catalog</h1></center>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Course ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Instructor</th>
+        <th scope="col"><center>Credits</center></th>
+        <th scope="col"><center>Enroll</center></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses: %}
+        <tr>
+          <td>{{ course.course_id }}</td>
+          <td>{{ course.title }}</td>
+          <td>{{ course.instructor }}</td>
+          <td><center>{{ course.credits }}</center></td>
+          <td><center><a href="/enroll/{{ course.id }}"><i class="enrollButton fas fa-plus-circle"></i></a></center></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

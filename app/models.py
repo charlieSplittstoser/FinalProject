@@ -34,8 +34,9 @@ class User(UserMixin, db.Model):
 class Course(db.Model):
   __tablename__ = 'Course'
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-  course_id = db.Column(db.Integer, unique=True, nullable=False)
+  course_id = db.Column(db.String(12), unique=True, nullable=False)
   title = db.Column(db.String(50), unique=False, nullable=False)
+  instructor = db.Column(db.String(50), unique=False, nullable=False)
   credits = db.Column(db.Integer, unique=False, nullable=False)
 
   def __repr__(self):

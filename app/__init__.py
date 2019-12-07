@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/ffgssh.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/MyDB.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "blah123"
 app.config['TESTING'] = False

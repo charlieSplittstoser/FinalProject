@@ -11,18 +11,28 @@ def initdb():
     db.create_all()
     admin = User(first_name='bobby', last_name='clasemann', email='bob@example.com', person_key=1)
     admin2 = User(first_name='charlie', last_name='split', email='split@example.com', person_key=1)
-    course_one = Course(course_id=4131, title='CSCI4131', credits=3)
+    course1 = Course(course_id='CSCI4131', title='Internet Programming', instructor='Brad Miller', credits=3)
+    course2 = Course(course_id='CSCI4041', title='Algorithms & Data Structures', instructor='James Parker', credits=4)
+    course3 = Course(course_id='CSCI2041', title='Adv. Programming Principles', instructor='Gopalan Nadathur', credits=3)
+    course4 = Course(course_id='ENGL1001W', title='Introduction to Literature', instructor='Chris Kamerbeek', credits=3)
+    course5 = Course(course_id='GEOG1403', title='Biogeography', instructor='Kurt Kipfmueller', credits=4)
+    course6 = Course(course_id='JOUR3745', title='Journalism', instructor='Ruth Defoster', credits=3)
+
     enroll1 = Enrollment(user_id=0, course_id=0)
     db.session.add(admin)
     db.session.add(admin2)
-    db.session.add(course_one)
+    db.session.add(course1)
+    db.session.add(course2);
+    db.session.add(course3);
+    db.session.add(course4);
+    db.session.add(course5);
+    db.session.add(course6);
     db.session.add(enroll1);
     db.session.commit()
     return "DB initialized"
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
     print("Hello")
 
@@ -33,7 +43,15 @@ def index():
     print("Goodbye")
 
     #return "Hello, World!"
-    return render_template("index.html", title='Home Page')
+    return render_template("index.html", title='Home')
+
+@app.route('/catalog')
+def catalog():
+    return render_template("catalog.html", title="Course Catalog", courses=Course.query.all())
+
+@app.route('/enroll/<id>')
+def enroll(id):
+    return render_template("enroll.html", title="Enroll Course", course=Course.query.get(id))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
