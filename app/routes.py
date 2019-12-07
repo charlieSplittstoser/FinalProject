@@ -1,8 +1,10 @@
 from app import app, db
-from flask import render_template, flash, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for, Response
+import requests
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Course, Enrollment
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, LibraryForm
+from flask_wtf import FlaskForm
 from werkzeug.urls import url_parse
 
 
@@ -22,7 +24,7 @@ def initdb():
 
 @app.route('/')
 @app.route('/index')
-@login_required
+#@login_required
 def index():
     print("Hello")
 
@@ -67,6 +69,20 @@ def login():
             next_page = url_for('index')
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/library', methods=['GET', 'POST'])
+def library():
+    form = LibraryForm()
+    return render_template("library.html", form=form)
+
+
+@app.route('/proxy/<id_type>/<id_value>', methods=['GET', 'POST'])
+def proxy(id_type, id_value):
+    result = requests.get(f'http://openlibrary.org/api/volumes/brief/{id_type}/{id_value}.json')
+    resp = Response(result.text)
+    print(resp)
+    resp.headers['Content-Type'] = 'application/json'
+    return resp
 
 
 @app.route('/logout')
