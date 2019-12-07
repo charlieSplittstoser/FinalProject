@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, SubmitField, SelectField, validators
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -22,3 +23,12 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('This email address is already in use.')
+
+class LibraryForm(FlaskForm):
+    def validate_library(form, field):
+        if (len(field.data) == 0):
+            raise ValidationError(message)
+
+    id_type = SelectField('ID', choices=[("Default", "Select"), ("isbn","isbn"), ("lccn", "lccn"), ("oclc", "oclc"), ('olid', "olid")], render_kw={'class': 'form-control'})
+    id_value = StringField('Value', [validators.Required(message="Please enter value.")],render_kw={'class': 'form-control'})
+    submit = SubmitField("Submit")
