@@ -1,5 +1,5 @@
 function checkLibraryFields() {
-  var book_id = document.querySelector('#id_type').value; 
+  var book_id = document.querySelector('#id_type').value;
   var book_value = document.querySelector('#id_value').value;
 
   if (book_id.value == 'Select') {
@@ -53,4 +53,32 @@ function callbackFunc(json) {
       $('#book_cover').append(`<img src=${book.imageLinks.thumbnail}>`);
     }
   }
+}
+
+function enrollUser(userId, courseId) {
+  fetch(`../enrollUser/${userId}/${courseId}`, { mode: 'cors' })
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(resp) {
+    if(resp == "Success") {
+      $('#enrollMessage').text("Successfully enrolled!");
+      $('#enrollMessage').removeClass('error');
+      $('#enrollMessage').addClass('success');
+      console.log('Request successful', resp);
+    } else {
+      $('#enrollMessage').text("Failure to enroll. Perhaps you are already enrolled in this course.");
+      $('#enrollMessage').removeClass('success');
+      $('#enrollMessage').addClass('error');
+      console.log('Request failure', resp);
+    }
+
+    var backBtn = $('<a>', { 'href':'../catalog', 'class': 'btn btn-outline-primary', 'role': 'button' });
+    backBtn.text('Return to Catalog');
+    $('#enrollBtnGroup').empty();
+    $('#enrollBtnGroup').append(backBtn);
+  })
+  .catch(function(error) {
+    console.log('Request failed', error);
+  });
 }

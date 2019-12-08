@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <center><h1>Course Catalog</h1></center>
+  <center>
+    <h1>Course Catalog</h1>
+    <h5>Spring 2020</h5>
+    {% if enrolled %}
+      <p id="enrolledStatus">Successfully enrolled in {{ enrolled }}!</p>
+    {% endif %}
+
+  </center>
   <table class="table">
     <thead>
       <tr>

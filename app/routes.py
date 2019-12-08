@@ -48,13 +48,27 @@ def index():
     #return "Hello, World!"
     return render_template("index.html", title='Home')
 
-@app.route('/catalog')
+@app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
-    return render_template("catalog.html", title="Course Catalog", courses=Course.query.all())
+    enrolled = request.form.get('enrolled') #if key doesn't exist, returns None
+    print(enrolled);
+    return render_template("catalog.html", title="Course Catalog", courses=Course.query.all(), enrolled=enrolled)
+
+@app.route('/enrollUser/<user_id>/<course_id>')
+def enrollUser(user_id, course_id):
+    enroll1 = Enrollment(user_id=user_id, course_id=course_id)
+    db.session.add(enroll1)
+    try:
+        db.session.commit()
+        return "Success"
+    except Exception as e:
+        return "Failed"
+
 
 @app.route('/enroll/<id>')
+@login_required
 def enroll(id):
-    return render_template("enroll.html", title="Enroll Course", course=Course.query.get(id))
+    return render_template("enroll.html", title="Enroll Course", course=Course.query.get(id), user_id=current_user.id)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -70,7 +84,6 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
