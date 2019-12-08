@@ -4,8 +4,7 @@
 }
 
 #logout {
-  position: absolute;
-  right: 8;
+  float: right;
 }
 
 #title {
