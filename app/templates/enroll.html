@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <center><h4 style="margin-top:100px;">You are about to enroll in the following course:</h4></center>
+  <center><h3 style="margin-top:100px;">You are about to enroll in the following course:</h3></center>
 
   <div id="enrollBlock">
-    <p>{{ course.course_id }} - {{ course.title }}</p>
-    <span>Instructor: {{ course.instructor }}</span>
-    <span>Credits: {{ course.credits }}</span>
+    <h4 id="enrollCourse">{{ course.course_id }} - {{ course.title }}</h4>
+    <div id="enrollInfo">
+      <h5 id="enrollInstructor">Instructor: {{ course.instructor }}</h5>
+      <h6 id="enrollCredits">Credits: {{ course.credits }}</h6>
+    </div>
+
+  <center>
+    <p id="enrollMessage"></p>
+    <div id="enrollBtnGroup">
+      <a href="/catalog" role="button" class="btn btn-outline-danger">Cancel</a>
+      <button type="button" class="btn btn-outline-primary" onclick="enrollUser({{user_id}}, {{course.id}})">Enroll</button>
+    </div>
+  </center>
   </div>
 
 {% endblock %}
