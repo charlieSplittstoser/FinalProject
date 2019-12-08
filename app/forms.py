@@ -29,6 +29,5 @@ class LibraryForm(FlaskForm):
         if (len(field.data) == 0):
             raise ValidationError(message)
 
-    id_type = SelectField('ID', choices=[("Default", "Select"), ("isbn","isbn"), ("lccn", "lccn"), ("oclc", "oclc"), ('olid', "olid")], render_kw={'class': 'form-control'})
-    id_value = StringField('Value', [validators.Required(message="Please enter value.")],render_kw={'class': 'form-control'})
+    book_name = StringField('Value', [validators.Required(message="Please enter the name of a book.")], render_kw={'class': 'form-control'})
     submit = SubmitField("Submit")

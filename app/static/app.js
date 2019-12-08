@@ -17,9 +17,8 @@ function checkLibraryFields() {
 }
 
 function postBook() {
-  var id_type = document.querySelector("#id_type").value;
-  var id_value = document.querySelector("#id_value").value;
-	fetch(`proxy/${id_type}/${id_value}`)
+  var book = document.querySelector("#book_title").value;
+	fetch(`proxy/${book}`)
 	.then(function(response) {
      	return response.json();
   })
@@ -33,12 +32,25 @@ function postBook() {
 }
 
 function callbackFunc(json) {
-  console.log("IN CALLBACK");
-  var book_id = document.querySelector('#id_type').value; 
-  if (typeof json.records === undefined) {
+  $('.book_content').empty();
+  var book_id = document.querySelector('#book_name').value;
+  if (typeof json.items === undefined) {
     $('#book_title').append('Book not found.')
   } else {
-    for (var key in json.records[0])
-    $('#book-title').append(`${key.details.details.title}`);
+    for (var key in json.items) {
+
+     var book = json.items[key].volumeInfo;
+
+
+      $('#book_title').append(`${book.title}`);
+      $('#book_pages').append(`Number of pages: ${book.pageCount}`);
+      $('#book_authors').append(`Author(s): `);
+      for (var author in book.authors) {
+        $('#book_authors').append(`${book.authors[author]} `);
+      }
+      $('#book_publish').append(`Published: ${book.publishedDate}, ${book.publisher}`);
+      //$('#book_availability').append(`Availability: ${book.ebooks[0].availability}`);
+      $('#book_cover').append(`<img src=${book.imageLinks.thumbnail}>`);
+    }
   }
 }

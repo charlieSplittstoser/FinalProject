@@ -95,9 +95,9 @@ def library():
     return render_template("library.html", form=form)
 
 
-@app.route('/proxy/<id_type>/<id_value>', methods=['GET', 'POST'])
-def proxy(id_type, id_value):
-    result = requests.get(f'http://openlibrary.org/api/volumes/brief/{id_type}/{id_value}.json')
+@app.route('/proxy/<name>', methods=['GET', 'POST'])
+def proxy(name):
+    result = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={name}')
     resp = Response(result.text)
     print(resp)
     resp.headers['Content-Type'] = 'application/json'
