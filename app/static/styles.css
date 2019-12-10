@@ -13,6 +13,12 @@
   font-size: 25px;
   padding-left: 5px;
   padding-right: 5px;
+  text-decoration: none;
+}
+
+#title a {
+  color: white;
+  text-decoration: none;
 }
 
 #navbar {
@@ -27,7 +33,7 @@
   float: left;
 }
 
-.navElement a {
+.navLink {
   display: block;
   color: white;
   text-align: center;
@@ -35,8 +41,10 @@
   text-decoration: none;
 }
 
-.navElement a:hover {
+.navLink:hover {
   background-color: #111;
+  text-decoration: none;
+  color: white;
 }
 /* END BASE PAGE */
 

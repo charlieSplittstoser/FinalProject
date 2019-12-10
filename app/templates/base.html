@@ -14,16 +14,16 @@
     <body>
         <div id="header">
           <ul id="navbar">
-            <li class="navElement" id="title">Student Center</li>
-            <li class="navElement"><a href="/index">Home</a></li>
-            <li class="navElement"><a href="#">Course Schedule</a></li>
-            <li class="navElement"><a href="/catalog">Course Catalog</a></li>
-            <li class="navElement"><a href="#">Library</a></li>
+            <li class="navElement" id="title"><a href="/index">Student Center</a></li>
+            <li class="navElement"><a class='navLink' href="/index">Home</a></li>
+            <li class="navElement"><a class='navLink' href="/schedule">Course Schedule</a></li>
+            <li class="navElement"><a class='navLink' href="/catalog">Course Catalog</a></li>
+            <li class="navElement"><a class='navLink' href="/library">Library</a></li>
             {% if current_user.first_name %}
-              <li class="navElement" id="logout"><a href="/logout">Logout</a></li>
+              <li class="navElement" id="logout"><a class='navLink' href="/logout">Logout</a></li>
             {% else %}
-              <li class="navElement" id="logout"><a href="/register">Register</a></li>
-              <li class="navElement" id="logout"><a href="/login">Login</a></li>
+              <li class="navElement" id="logout"><a class='navLink' href="/register">Register</a></li>
+              <li class="navElement" id="logout"><a class='navLink' href="/login">Login</a></li>
             {% endif %}
           </ul>
         </div>

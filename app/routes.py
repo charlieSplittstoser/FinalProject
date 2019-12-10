@@ -48,6 +48,10 @@ def index():
     #return "Hello, World!"
     return render_template("index.html", title='Home')
 
+@app.route('/schedule')
+def schedule():
+    return render_template("schedule.html", title="Course Schedule")
+
 @app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
     enrolled = request.form.get('enrolled') #if key doesn't exist, returns None
@@ -63,7 +67,6 @@ def enrollUser(user_id, course_id):
         return "Success"
     except Exception as e:
         return "Failed"
-
 
 @app.route('/enroll/<id>')
 @login_required
