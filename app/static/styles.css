@@ -7,6 +7,42 @@
   float: right;
 }
 
+.card {
+  max-width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#books_main {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: white;
+}
+
+#book_error {
+  display: none;
+}
+
+#index {
+  margin-top: 50px;
+}
+
+img {
+  object-fit: cover;
+}
+
+.for_sale {
+  color: green;
+}
+
+.not_for_sale {
+  color: red;
+}
+
+.book_img {;
+    width: 100%;
+    height: auto;
+}
+
 #title {
   color: white;
   margin-top: 5px;
@@ -14,6 +50,12 @@
   padding-left: 5px;
   padding-right: 5px;
   text-decoration: none;
+}
+
+#book_container {
+  text-align: center;
+  border: solid black;
+  margin: 0px;
 }
 
 #title a {

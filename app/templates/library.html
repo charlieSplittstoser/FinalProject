@@ -2,24 +2,28 @@
 {% block content %}
     <center><h1>Campus Library</h1></center>
 	<!--<form action="/searchLibrary" method="POST" onsubmit="checkLibraryFields()"> -->
-		{{ form.hidden_tag() }}
-		<div class="form-group">
-			{{ form.book_name.label }}
-			{{ form.book_name(class_='form-control') }}
+		<div class="container">
+			{{ form.hidden_tag() }}
+			<div class="form-group">
+				{{ form.book_name.label }}
+				{{ form.book_name(class_='form-control') }}
+            	{% for error in form.book_name.errors %}
+	            <span style="color: red;">[{{ error }}]</span>
+	            {% endfor %}
+				<span id="book_error" class="error">Please enter book title.</span>
+			</div>
+			{{ form.submit(class_="btn btn-primary", onclick="postBook()") }}
 		</div>
-		<button onclick="postBook()">
-		{{ form.submit(class_="btn btn-primary") }}
-	</button>
 	<!--</form> !-->
 
 	<br /><br />
-	<div class="book_section">
-		<div id="book_title" class="book_content"></div>
-		<div id="book_pages" class="book_content"></div>
-		<div id="book_authors" class="book_content"></div>
-		<div id="book_publish" class="book_content"></div>
-		<div id="book_availability" class="book_content"></div>
-		<div id="book_cover" class="book_content"></div>
+	<div id="books_main" class="container">
 	</div>
+
+	<script>
+		window.onload = function() {
+			postBook();
+		}
+	</script>
 
 {% endblock %}

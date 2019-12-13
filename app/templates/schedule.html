@@ -5,11 +5,11 @@
 
       <div id="selectGroup">
         <label for="selectTerm"><b>Select Term</b></label>
-        <select class="form-control" id="selectTerm" name="selectTerm">
+        <select class="form-control" id="selectTerm" name="selectTerm" value={{term}}>
           {% if term == 'Spring 2020' %}<option selected>Spring 2020</option>{% else %}<option>Spring 2020</option>{% endif %}
           {% if term == 'Fall 2019' %}<option selected>Fall 2019</option>{% else %}<option>Fall 2019</option>{% endif %}
           {% if term == 'Spring 2019' %}<option selected>Spring 2019</option>{% else %}<option>Spring 2019</option>{% endif %}
-      </select>
+        </select>
       </div>
       <table id="scheduleTable" class="table table-striped">
         <thead>
