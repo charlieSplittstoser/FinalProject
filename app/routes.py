@@ -19,8 +19,6 @@ def initdb():
     course4 = Course(course_id='ENGL1001W', title='Introduction to Literature', instructor='Chris Kamerbeek', credits=3)
     course5 = Course(course_id='GEOG1403', title='Biogeography', instructor='Kurt Kipfmueller', credits=4)
     course6 = Course(course_id='JOUR3745', title='Journalism', instructor='Ruth Defoster', credits=3)
-
-    enroll1 = Enrollment(user_id=0, course_id=0)
     db.session.add(admin)
     db.session.add(admin2)
     db.session.add(course1)
@@ -29,7 +27,6 @@ def initdb():
     db.session.add(course4);
     db.session.add(course5);
     db.session.add(course6);
-    db.session.add(enroll1);
     db.session.commit()
     return "DB initialized"
 
@@ -48,9 +45,16 @@ def index():
     #return "Hello, World!"
     return render_template("index.html", title='Home')
 
-@app.route('/schedule')
-def schedule():
-    return render_template("schedule.html", title="Course Schedule")
+@app.route('/schedule', defaults={'term': 'Spring 2020'})
+@app.route('/schedule/<term>')
+@login_required
+def schedule(term):
+    try:
+        enrollment = db.session.query(Enrollment, Course).filter(Enrollment.course_id == Course.id, Enrollment.user_id == current_user.id)
+    except Exception as e:
+        enrollment = []
+    return render_template("schedule.html", title="Course Schedule", enrollment=enrollment, term=term)
+
 
 @app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
@@ -60,12 +64,13 @@ def catalog():
 
 @app.route('/enrollUser/<user_id>/<course_id>')
 def enrollUser(user_id, course_id):
-    enroll1 = Enrollment(user_id=user_id, course_id=course_id)
+    enroll1 = Enrollment(user_id=user_id, course_id=course_id, term="Spring 2020", grade="IP")
     db.session.add(enroll1)
     try:
         db.session.commit()
         return "Success"
     except Exception as e:
+        print(e)
         return "Failed"
 
 @app.route('/enroll/<id>')
@@ -96,7 +101,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Invalid username or password!')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')

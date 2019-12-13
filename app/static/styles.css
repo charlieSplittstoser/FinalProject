@@ -91,3 +91,41 @@
   margin-top: 25px;
 }
 /* END ENROLL PAGE */
+
+/* SCHEDULE PAGE */
+#scheduleTable {
+  width: 65%;
+  margin-top: 20px;
+}
+
+#selectGroup {
+  margin-top:50px;
+}
+
+#selectTerm {
+  border: 1px solid #007BFF !important;
+  color: #007BFF;
+  width: 200px;
+}
+
+.padLeft {
+  padding-left: 30px !important;
+}
+/* END SCHEDULE PAGE */
+
+/* LOGIN & REGISTER PAGES */
+#loginBox {
+  margin-top: 50px;
+  width: 400px;
+}
+
+#registerBox {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.center {
+  margin: 0 auto;
+}
+/* END LOGIN & REGISTER PAGES */

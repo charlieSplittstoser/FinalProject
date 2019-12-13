@@ -51,10 +51,12 @@ class Enrollment(db.Model):
   user = db.relationship("User")
   course_id = Column(db.Integer, db.ForeignKey('Course.id'), nullable=False)
   course = db.relationship("Course")
+  term = db.Column(db.String(80), unique=False, nullable=False)
+  grade = db.Column(db.String(2), unique=False, nullable=True)
 
 
   def __repr__(self):
-    return '<Course %r, User %r>' % (self.course_id, self.user_id)
+    return '<Course %r, User %r, term %r, grade %r>' % (self.course_id, self.user_id, self.term, self.grade)
   #enroll = relationship(
     #"User",
     #secondary=Table'enrolled', Base.metadata,

@@ -82,3 +82,12 @@ function enrollUser(userId, courseId) {
     console.log('Request failed', error);
   });
 }
+
+$('#selectTerm').change(function() {
+  var term = $('#selectTerm').children("option:selected").val();
+  handleScheduleTermChange(term);
+})
+
+function handleScheduleTermChange(term) {
+  document.location.href="/schedule/" + term;
+}

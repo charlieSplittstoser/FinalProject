@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <center><h1>Student Course Schedule</h1></center>
+    <center><h1>Student Course Schedule</h1>
+
+      <div id="selectGroup">
+        <label for="selectTerm"><b>Select Term</b></label>
+        <select class="form-control" id="selectTerm" name="selectTerm">
+          {% if term == 'Spring 2020' %}<option selected>Spring 2020</option>{% else %}<option>Spring 2020</option>{% endif %}
+          {% if term == 'Fall 2019' %}<option selected>Fall 2019</option>{% else %}<option>Fall 2019</option>{% endif %}
+          {% if term == 'Spring 2019' %}<option selected>Spring 2019</option>{% else %}<option>Spring 2019</option>{% endif %}
+      </select>
+      </div>
+      <table id="scheduleTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Course ID</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Credits</th>
+            <th scope="col">Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for enroll in enrollment: %}
+            {% if enroll[0].term == term %}
+              <tr>
+                <!-- <td>{{ enroll[1].course_id }}</td> -->
+                <td>{{ enroll[1].course_id }}</td>
+                <td>{{ enroll[1].title }}</td>
+                <td class="padLeft">{{ enroll[1].credits }}</td>
+                <td class="padLeft">{{ enroll[0].grade }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </center>
 {% endblock %}
