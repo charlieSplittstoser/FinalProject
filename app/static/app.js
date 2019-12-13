@@ -1,23 +1,30 @@
-function checkLibraryFields() {
-  var book_id = document.querySelector('#id_type').value;
-  var book_value = document.querySelector('#id_value').value;
 
-  if (book_id.value == 'Select') {
-    document.querySelector('#id_error').innerHTML = "Please select an ID.";
-    return false;
-  }
+document.getElementById('book_name').oninput = function() {
+  var book_title = document.querySelector('#book_name').value;
+  console.log(book_title);
+  var book_error = document.querySelector('#book_error');
 
-  if (book_value.length == 0) {
-    document.querySelector('#value_error').innerHTML = "Please enter book value.";
+  if (book_title.length == 0) {
+    book_error.style.display = "block";
     return false;
+  } else {
+    book_error.style.display = "none";
   }
 
   return true;
-
 }
 
+
+var book = document.querySelector("#book_name")
+book.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        postBook();
+    }
+});
+
+
 function postBook() {
-  var book = document.querySelector("#book_title").value;
+  var book = document.querySelector("#book_name").value;
 	fetch(`proxy/${book}`)
 	.then(function(response) {
      	return response.json();
@@ -32,25 +39,53 @@ function postBook() {
 }
 
 function callbackFunc(json) {
-  $('.book_content').empty();
-  var book_id = document.querySelector('#book_name').value;
-  if (typeof json.items === undefined) {
-    $('#book_title').append('Book not found.')
+  //var book_id = document.querySelector('#book_name').value;
+  $('#books_main').empty();
+  if (typeof json.items === "undefined") {
+    $('#books_main').append('Book not found.')
   } else {
+    var cols = 0;
+    //var row = $('<div>', {'class': 'row'});
     for (var key in json.items) {
+      var book = json.items[key].volumeInfo;
+      var sale = json.items[key].saleInfo;
+      var card = $('<div>', {'class': 'card mb-3'});
+      var card_row = $('<div>', {'class': 'row no-gutters'});
+      var img_col = $('<div>', {'class': 'book_img book_content col-md-4'});
+      $(img_col).append(`<img src=${book.imageLinks.thumbnail} class="card-img">`);
+      var card_col = $('<div>', {'class': 'col-md-8'});
+      var card_body = $('<div>', {'class': 'card-body'});
+      var card_title = $('<h5>', {'class': 'card-title'});
+      $(card_title).append(`${book.title}`);
+      var pages = $('<div>', { 'id': 'book_pages', 'class': 'card-text' });
+      var authors = $('<div>', { 'id': 'book_authors', 'class': 'card-text' });
+      var publish = $('<div>', { 'id': 'book_publish', 'class': 'card-text' });
+      var availability = $('<div>', { 'id': 'book_availability', 'class': 'card-text for_sale' });
 
-     var book = json.items[key].volumeInfo;
-
-
-      $('#book_title').append(`${book.title}`);
-      $('#book_pages').append(`Number of pages: ${book.pageCount}`);
-      $('#book_authors').append(`Author(s): `);
+      $(pages).append(`Number of pages: ${book.pageCount}`);
+      $(authors).append(`Author(s): `);
       for (var author in book.authors) {
-        $('#book_authors').append(`${book.authors[author]} `);
+        $(authors).append(`${book.authors[author]} `);
       }
-      $('#book_publish').append(`Published: ${book.publishedDate}, ${book.publisher}`);
-      //$('#book_availability').append(`Availability: ${book.ebooks[0].availability}`);
-      $('#book_cover').append(`<img src=${book.imageLinks.thumbnail}>`);
+      $(publish).append(`Published: ${book.publishedDate}, ${book.publisher}`);
+      if (sale.saleability == "FOR_SALE" || sale.saleability == "FOR_SALE_AND_RENTAL") {
+        $(availability).append('Available');
+      } else {
+        availability = $('<div>', { 'id': 'book_availability', 'class': 'card-text not_for_sale' });
+        $(availability).append('Unavailable');
+      }
+
+      $(card_body).append(card_title);
+      $(card_body).append(pages);
+      $(card_body).append(authors);
+      $(card_body).append(publish);
+      $(card_body).append(availability);
+      $(card_col).append(card_body);
+      $(card_row).append(img_col);
+      $(card_row).append(card_col);
+      $(card).append(card_row);
+      $('#books_main').append(card);
+
     }
   }
 }
