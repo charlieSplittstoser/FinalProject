@@ -67,7 +67,7 @@ function callbackFunc(json) {
       var card = $('<div>', {'class': 'card mb-3'});
       var card_row = $('<div>', {'class': 'row no-gutters'});
       var img_col = $('<div>', {'class': 'book_img book_content col-md-4'});
-      $(img_col).append(`<img src=${book.imageLinks.thumbnail} class="card-img">`);
+      $(img_col).append(`<img src=${book.imageLinks ? book.imageLinks.thumbnail : "/static/images/undefined.png"} class="card-img">`);
       var card_col = $('<div>', {'class': 'col-md-8'});
       var card_body = $('<div>', {'class': 'card-body'});
       var card_title = $('<h5>', {'class': 'card-title'});
