@@ -21,6 +21,7 @@
             <li class="navElement"><a class='navLink' href="/library">Library</a></li>
             {% if current_user.first_name %}
               <li class="navElement" id="logout"><a class='navLink' href="/logout">Logout</a></li>
+              <li class="navElement" id="currentUser">{{current_user.first_name}} {{current_user.last_name}}</li>
             {% else %}
               <li class="navElement" id="logout"><a class='navLink' href="/register">Register</a></li>
               <li class="navElement" id="logout"><a class='navLink' href="/login">Login</a></li>

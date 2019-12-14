@@ -7,6 +7,16 @@
   float: right;
 }
 
+#currentUser {
+  float: right;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 17px 16px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
 .card {
   max-width: 100%;
   margin-left: 10%;
