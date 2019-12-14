@@ -21,3 +21,6 @@ login.login_view = 'login'
 
 
 import routes, models
+
+if __name__=="app":
+        app.run()
