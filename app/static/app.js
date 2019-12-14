@@ -1,4 +1,3 @@
-
 $('#book_name').change(function() {
   var book_title = document.querySelector('#book_name').value;
   console.log(book_title);
@@ -13,30 +12,12 @@ $('#book_name').change(function() {
 
   return true;
 })
-/*
-document.getElementById('book_name').oninput = function() {
-  var book_title = document.querySelector('#book_name').value;
-  console.log(book_title);
-  var book_error = document.querySelector('#book_error');
 
-  if (book_title.length == 0) {
-    book_error.style.display = "block";
-    return false;
-  } else {
-    book_error.style.display = "none";
-  }
-
-  return true;
-}*/
-
-
-//var book = document.querySelector("#book_name")
 $("#book_name").on('keypress', function (e) {
     if (e.keyCode === 13) {
         postBook();
     }
 });
-
 
 function postBook() {
   var book = document.querySelector("#book_name").value;

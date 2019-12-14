@@ -115,7 +115,6 @@ def library():
     form = LibraryForm()
     return render_template("library.html", form=form)
 
-
 @app.route('/proxy/<name>', methods=['GET', 'POST'])
 def proxy(name):
     result = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={name}')
