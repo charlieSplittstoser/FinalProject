@@ -2,8 +2,8 @@ from app import app, db
 from flask import render_template, flash, request, redirect, url_for, Response
 import requests
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Course, Enrollment
-from app.forms import LoginForm, RegistrationForm, LibraryForm
+from models import User, Course, Enrollment
+from forms import LoginForm, RegistrationForm, LibraryForm
 from flask_wtf import FlaskForm
 from werkzeug.urls import url_parse
 import random
