@@ -1,1 +1,1 @@
-web: gunicorn __init__:studentcenter
+web: gunicorn __init__:app
