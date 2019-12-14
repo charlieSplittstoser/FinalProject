@@ -23,7 +23,7 @@
 }
 
 #index {
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 img {
@@ -136,7 +136,7 @@ img {
 
 /* SCHEDULE PAGE */
 #scheduleTable {
-  width: 65%;
+  width: 70%;
   margin-top: 20px;
 }
 
@@ -171,3 +171,8 @@ img {
   margin: 0 auto;
 }
 /* END LOGIN & REGISTER PAGES */
+
+.card {
+  padding: 8px;
+  margin-bottom: 5px;
+}

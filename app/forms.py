@@ -30,4 +30,4 @@ class LibraryForm(FlaskForm):
             raise ValidationError(message)
 
     book_name = StringField('Book Title', validators=[DataRequired(message="Please enter the name of a book.")], default="Internet Programming")
-    submit = SubmitField("Submit")
+    submit = SubmitField("Search")

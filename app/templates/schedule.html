@@ -20,19 +20,28 @@
             <th scope="col">Grade</th>
           </tr>
         </thead>
-        <tbody>
-          {% for enroll in enrollment: %}
-            {% if enroll[0].term == term %}
-              <tr>
-                <!-- <td>{{ enroll[1].course_id }}</td> -->
-                <td>{{ enroll[1].course_id }}</td>
-                <td>{{ enroll[1].title }}</td>
-                <td class="padLeft">{{ enroll[1].credits }}</td>
-                <td class="padLeft">{{ enroll[0].grade }}</td>
-              </tr>
-            {% endif %}
-          {% endfor %}
+        <tbody id="tableBody">
+            {% for enroll in enrollment: %}
+              {% if enroll[0].term == term %}
+                <tr>
+                  <!-- <td>{{ enroll[1].course_id }}</td> -->
+                  <td>{{ enroll[1].course_id }}</td>
+                  <td>{{ enroll[1].title }}</td>
+                  <td class="padLeft">{{ enroll[1].credits }}</td>
+                  <td class="padLeft">{{ enroll[0].grade }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
         </tbody>
       </table>
+      <div id="warningContainer"></div>
     </center>
+    <script>
+      window.onload = function() {
+        if($('#tableBody').children().length == 0) {
+          var enrollWarning = $('<p></p>').text("You have not enrolled in any classes for this term.")
+          $('#warningContainer').append(enrollWarning);
+        }
+      }
+    </script>
 {% endblock %}
