@@ -5,7 +5,7 @@ Student record keeping system
 2. Robert Clasemann (clase063) and Charlie Splittstoser (split022)
 3. https://nameless-sands-47707.herokuapp.com/
 4. https://github.com/charlieSplittstoser/FinalProject/tree/master/app
-5. Bootstrap, JQuery, Postgres, Ajax, Google Library API. 
+5. Bootstrap, JQuery, Python (Flask), Postgres, Ajax, Google Library API. 
 6.  
     Upon loading the home page, you'll be shown three links with a short description.
 
@@ -56,7 +56,7 @@ Student record keeping system
    **Schedule Page**: Displays a list of classes with information pertaining to each class including the name of the professor and number of credits. 
   
 9. 
-    **User (Student) Table**: It's primary key is ID and it contains the student's first name, last name, and password hash. Each student is uniquely identified with their email address. It's used to check if the person is a current user or to add said person as a registered user.
+    **User (Student) Table**: It's primary key is ID and it contains the student's first name, last name, and password hash. Each student is uniquely identified with their email address. It's used for login/registration checks and also to associate course registration information with a specific student.
     
     **Course Table**: It's primary key is ID and it contiains the course's ID, title, instructor, and number of credits. Each course is uniquely identified with its course ID. This table's contents is shown on the course catalog page.
     
