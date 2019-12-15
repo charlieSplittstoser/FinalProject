@@ -13,9 +13,13 @@ account. Once registration is completed, a message will indicate that they've su
 they're brought back to the home screen. Now when they click
 7.
   -Log-in verification: Checks if credentials match that within the database. If so, access is given.
+  
   -Register an account: Information entered is inserted into the database.
+  
   -Course schedule drop-down window: Displays data from database matching the term selected.
+  
   -Enroll in course: Inserts enrolled course into the currently selected term course schedule.
+  
   -Library: Calls Google Library API, extracts data from json, and returns specific information about each book.
   
 8.
