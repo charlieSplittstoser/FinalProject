@@ -6,9 +6,7 @@ Student record keeping system
 3. https://nameless-sands-47707.herokuapp.com/
 4. https://github.com/charlieSplittstoser/FinalProject/tree/master/app
 5. Bootstrap, JQuery, Postgres, Ajax, Google Library API. 
-6. 
-    Our project is a student record keeping system. 
-
+6.  
     Upon loading the home page, you'll be shown three links with a short description.
 
     The first option is to look at their course schedule. If you click on this link and aren't signed into your account,
