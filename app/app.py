@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, Table
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from flask.ext.heroku import Heroku
+from flask_heroku import Heroku
 
 
 app = Flask(__name__)
