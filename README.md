@@ -5,7 +5,7 @@ Student record keeping system
 2. Robert Clasemann (clase063) and Charlie Splittstoser (split022)
 3. https://nameless-sands-47707.herokuapp.com/
 4. https://github.com/charlieSplittstoser/FinalProject/tree/master/app
-5. Bootstrap, JQuery, Postgres, Google Library API. 
+5. Bootstrap, JQuery, Postgres, Ajax, Google Library API. 
 6. 
     Our project is a student record keeping system. 
 
@@ -61,4 +61,5 @@ Student record keeping system
     **Course Table**: It's primary key is ID and it contiains the course's ID, title, instructor, and number of credits. Each course is uniquely identified with its course ID. This table's contents is shown on the course catalog page.
     
     **Enrollment Table**: It's primary key is ID and it contains a student ID, a course ID, the term of enrollment, and the grade receieved. This is a bridge table that is used to correlate data between a student and a specific course. 
-10.
+    
+10. N/A
