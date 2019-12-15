@@ -9,7 +9,7 @@ Student record keeping system
 6.  
     Upon loading the home page, you'll be shown three links with a short description.
 
-    The first option is to look at their course schedule. If you click on this link and aren't signed into your account,
+    The first option is to look at your course schedule. If you click on this link and aren't signed into your account,
     you'll see an error message. Otherwise if no account information is found within the database, you must register for a new
     account. Once registration is completed, a message will indicate that you've successfully created an account. 
 
