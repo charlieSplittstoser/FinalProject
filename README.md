@@ -30,35 +30,35 @@ Student record keeping system
 
 
 7.
-    Log-in verification: Checks if credentials match that within the database. If so, access is given.
+   **Log-in verification**: Checks if credentials match that within the database. If so, access is given.
   
-    Register an account: Information entered is inserted into the database.
+   **Register an account**: Information entered is inserted into the database.
   
-    Course schedule drop-down window: Displays data from database matching the term selected.
+   **Course schedule drop-down window**: Displays data from database matching the term selected.
   
-    Enroll in course: Inserts enrolled course into the currently selected term course schedule.
+   **Enroll in course**: Inserts enrolled course into the currently selected term course schedule.
   
-   Library: Calls Google Library API, extracts data from json, and returns specific information about each book.
+   **Library**: Calls Google Library API, extracts data from json, and returns specific information about each book.
   
 8.
-    Log-in Page: Displays fields to enter user email and password. 
+   **Log-in Page**: Displays fields to enter user email and password. 
     
-    Registration Page: Displays account information fields such as name and email.
+   **Registration Page**: Displays account information fields such as name and email.
     
-    Catalog Page: Displays a list of classes that the user could enroll for.
+   **Catalog Page**: Displays a list of classes that the user could enroll for.
     
-    Enroll Page: Displays a box confirming enrollment for the class.
+   **Enroll Page**: Displays a box confirming enrollment for the class.
   
-    Library Page: Displays a list of books that are potentially available at the library.
+   **Library Page**: Displays a list of books that are potentially available at the library.
     
-    Index Page: Displays links to other views with their description.
+   **Index Page**: Displays links to other views with their description.
     
-    Schedule Page: Displays a list of classes with information pertaining to each class including the name of the professor and number of credits. 
+   **Schedule Page**: Displays a list of classes with information pertaining to each class including the name of the professor and number of credits. 
   
 9. 
-    User (Student) Table: It's primary key is ID and it contains the student's first name, last name, and password hash. Each student is uniquely identified with their email address. It's used to check if the person is a current user or to add said person as a registered user.
+    **User (Student) Table**: It's primary key is ID and it contains the student's first name, last name, and password hash. Each student is uniquely identified with their email address. It's used to check if the person is a current user or to add said person as a registered user.
     
-    Course Table: It's primary key is ID and it contiains the course's ID, title, instructor, and number of credits. Each course is uniquely identified with its course ID. This table's contents is shown on the course catalog page.
+    **Course Table**: It's primary key is ID and it contiains the course's ID, title, instructor, and number of credits. Each course is uniquely identified with its course ID. This table's contents is shown on the course catalog page.
     
-    Enrollment Table: It's primary key is ID and it contains a student ID, a course ID, the term of enrollment, and the grade receieved. This is a bridge table that is used to correlate data between a student and a specific course. 
+    **Enrollment Table**: It's primary key is ID and it contains a student ID, a course ID, the term of enrollment, and the grade receieved. This is a bridge table that is used to correlate data between a student and a specific course. 
 10.
