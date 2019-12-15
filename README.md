@@ -2,7 +2,7 @@
 Student record keeping system
 
 1. Project type: A
-2. Robert Clasemann (clase06) and Charlie Splittstoser (split022)
+2. Robert Clasemann (clase063) and Charlie Splittstoser (split022)
 3. https://nameless-sands-47707.herokuapp.com/
 4. https://github.com/charlieSplittstoser/FinalProject/tree/master/app
 5. Bootstrap, JQuery, SQLite, Google Library API. 
