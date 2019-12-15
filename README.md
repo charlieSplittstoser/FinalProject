@@ -21,6 +21,12 @@ they're brought back to the home screen. Now when they click
 8.
   -Log-in Page: Displays fields to enter user email and password. 
   -Registration Page: Displays account information fields such as name and email.
-  -
+  -Catalog Page: Displays a list of classes that the user could enroll for.
+  -Enroll Page: Displays a box confirming enrollment for the class.
+  -Library Page: Displays a list of books that are potentially available at the library.
+  -Index Page: Displays links to other views with their description.
+  -Schedule Page: Displays a list of classes with information pertaining to each class including the name of the professor and
+  number of credits. 
+  
 9.
 10.
