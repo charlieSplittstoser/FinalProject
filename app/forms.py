@@ -2,19 +2,13 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from wtforms import StringField, SubmitField, SelectField, validators
-from app.models import User
+from models import User
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
-
-    def validate_login(self, email, password):
-        print("ENTERED")
-        user = User.query.filter_by(email=email.data).first()
-        if not user.check_password(password):
-            raise ValidationError('Invalid email or password.')
 
 class RegistrationForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
@@ -36,4 +30,4 @@ class LibraryForm(FlaskForm):
             raise ValidationError(message)
 
     book_name = StringField('Book Title', validators=[DataRequired(message="Please enter the name of a book.")], default="Internet Programming")
-    submit = SubmitField("Submit")
+    submit = SubmitField("Search")

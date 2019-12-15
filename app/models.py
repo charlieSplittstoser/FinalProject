@@ -45,7 +45,7 @@ class Course(db.Model):
 
 class Enrollment(db.Model):
   __tablename__ = 'Enrollment'
-  __table_args__ = (db.UniqueConstraint('user_id', 'course_id', name='enrolled'),)
+  __table_args__ = (db.UniqueConstraint('user_id', 'course_id', 'term', name='enrolled'),)
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   user_id = Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
   user = db.relationship("User")

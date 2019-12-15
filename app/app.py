@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/MYDB4.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/MYDB.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "blah123"
 app.config['TESTING'] = False
@@ -20,4 +20,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 
-from app import routes, models
+import routes, models
+
+if __name__ == '__main__':
+    app.run()

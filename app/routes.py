@@ -2,10 +2,11 @@ from app import app, db
 from flask import render_template, flash, request, redirect, url_for, Response
 import requests
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Course, Enrollment
-from app.forms import LoginForm, RegistrationForm, LibraryForm
+from models import User, Course, Enrollment
+from forms import LoginForm, RegistrationForm, LibraryForm
 from flask_wtf import FlaskForm
 from werkzeug.urls import url_parse
+import random
 
 
 @app.route('/initdb')
@@ -19,14 +20,27 @@ def initdb():
     course4 = Course(course_id='ENGL1001W', title='Introduction to Literature', instructor='Chris Kamerbeek', credits=3)
     course5 = Course(course_id='GEOG1403', title='Biogeography', instructor='Kurt Kipfmueller', credits=4)
     course6 = Course(course_id='JOUR3745', title='Journalism', instructor='Ruth Defoster', credits=3)
+    course7 = Course(course_id='WRIT1401', title='Freshmen Writing', instructor='Sadie Johnson', credits=3)
+    course8 = Course(course_id='MATH1371', title='Calculus I', instructor='Jennie Morgan', credits=4)
+    course9 = Course(course_id='MATH1372', title='Calculus II', instructor='Denis Bashkirov', credits=4)
+    course10 = Course(course_id='CSCI1101', title='Introduction to Computer Science', instructor='Tim Wrenn', credits=3)
+    course11 = Course(course_id='CSCI4707', title='Principles of Database Systems', instructor='Jaideep Srivistava', credits=3)
+    course12 = Course(course_id='BUS101', title='Introduction to Business', instructor='Mark Widdell', credits=3)
+
     db.session.add(admin)
     db.session.add(admin2)
     db.session.add(course1)
-    db.session.add(course2);
-    db.session.add(course3);
-    db.session.add(course4);
-    db.session.add(course5);
-    db.session.add(course6);
+    db.session.add(course2)
+    db.session.add(course3)
+    db.session.add(course4)
+    db.session.add(course5)
+    db.session.add(course6)
+    db.session.add(course7)
+    db.session.add(course8)
+    db.session.add(course9)
+    db.session.add(course10)
+    db.session.add(course11)
+    db.session.add(course12)
     db.session.commit()
     return "DB initialized"
 
@@ -59,7 +73,6 @@ def schedule(term):
 @app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
     enrolled = request.form.get('enrolled') #if key doesn't exist, returns None
-    print(enrolled);
     return render_template("catalog.html", title="Course Catalog", courses=Course.query.all(), enrolled=enrolled)
 
 @app.route('/enrollUser/<user_id>/<course_id>')
@@ -89,6 +102,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        populatePreviousSemesters(user.email)
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -115,7 +129,6 @@ def library():
     form = LibraryForm()
     return render_template("library.html", form=form)
 
-
 @app.route('/proxy/<name>', methods=['GET', 'POST'])
 def proxy(name):
     result = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={name}')
@@ -124,8 +137,26 @@ def proxy(name):
     resp.headers['Content-Type'] = 'application/json'
     return resp
 
-
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+def populatePreviousSemesters(email):
+    user = User.query.filter_by(email=email).first()
+    courses = db.session.query(Course.id).all()
+    print(courses)
+    random.shuffle(courses)
+    print(courses)
+    grades = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-"]
+    term = "Spring 2019"
+    x = 0
+    for course in courses:
+        enroll = Enrollment(user_id=user.id, course_id=course[0], term=term, grade=random.choice(grades))
+        db.session.add(enroll)
+        x += 1
+        if x is 4:
+            term = "Fall 2019"
+        elif x is 8:
+            break
+    db.session.commit()
