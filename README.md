@@ -12,30 +12,30 @@ they're prompted to do so. Otherwise if no account information is found within t
 account. Once registration is completed, a message will indicate that they've successfully created an account. After they log in,
 they're brought back to the home screen. Now when they click
 7.
-    -Log-in verification: Checks if credentials match that within the database. If so, access is given.
+    Log-in verification: Checks if credentials match that within the database. If so, access is given.
   
-    -Register an account: Information entered is inserted into the database.
+    Register an account: Information entered is inserted into the database.
   
-    -Course schedule drop-down window: Displays data from database matching the term selected.
+    Course schedule drop-down window: Displays data from database matching the term selected.
   
-    -Enroll in course: Inserts enrolled course into the currently selected term course schedule.
+    Enroll in course: Inserts enrolled course into the currently selected term course schedule.
   
-   -Library: Calls Google Library API, extracts data from json, and returns specific information about each book.
+   Library: Calls Google Library API, extracts data from json, and returns specific information about each book.
   
 8.
-    -Log-in Page: Displays fields to enter user email and password. 
+    Log-in Page: Displays fields to enter user email and password. 
     
-    -Registration Page: Displays account information fields such as name and email.
+    Registration Page: Displays account information fields such as name and email.
     
-    -Catalog Page: Displays a list of classes that the user could enroll for.
+    Catalog Page: Displays a list of classes that the user could enroll for.
     
-    -Enroll Page: Displays a box confirming enrollment for the class.
+    Enroll Page: Displays a box confirming enrollment for the class.
   
-    -Library Page: Displays a list of books that are potentially available at the library.
+    Library Page: Displays a list of books that are potentially available at the library.
     
-    -Index Page: Displays links to other views with their description.
+    Index Page: Displays links to other views with their description.
     
-    -Schedule Page: Displays a list of classes with information pertaining to each class including the name of the professor and number of credits. 
+    Schedule Page: Displays a list of classes with information pertaining to each class including the name of the professor and number of credits. 
   
 9.
 10.
