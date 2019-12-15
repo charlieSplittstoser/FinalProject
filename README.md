@@ -12,8 +12,8 @@ Student record keeping system
     The first option is to look at your course schedule. If you click on this link and aren't signed into your account,
     you'll be redirected to a log in page. If you attempt to log in without having an existing account, you'll see an error 
     message. You must register for a new account. Click on the register link and you'll be taken to the registration page to 
-    fill out basic information. Once registration is completed, a message will indicate that you've successfully created an 
-    account. 
+    fill out basic information. Once registration is completed, a message will display indicating that you've successfully 
+    created an account. 
 
     After you log in, you can access your course schedule. The default selection Spring 2020 won't have any classes to show.       But the Fall and Spring 2019 semesters will display four classes with their respective grades earned. 
 
